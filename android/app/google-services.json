@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "910999530990",
+    "project_id": "talk-pro-d9726",
+    "storage_bucket": "talk-pro-d9726.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910999530990:android:90cf93d17eeea467d2f2ff",
+        "android_client_info": {
+          "package_name": "com.example.talk_pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChdOIFjtltUhrvDAK7piP8pFc353VNC7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
