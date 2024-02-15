@@ -31,7 +31,7 @@ void main() async {
         ),
         GetPage(
           name: '/login',
-          page: () => const LoginScreen(),
+          page: () => const LoginScreen()!,
         ),
       ],
     ),

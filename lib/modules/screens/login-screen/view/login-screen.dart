@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:talk_pro/modules/screens/login-screen/view/constant/const.dart';
+import 'package:talk_pro/utils/auth-helper.dart';
 import 'package:talk_pro/utils/color.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -12,6 +17,7 @@ class LoginScreen extends StatelessWidget {
       body: FlutterLogin(
         logo: 'lib/assets/app-icon.png',
         title: 'TALK PRO',
+        titleTag: 'talk-pro',
         theme: LoginTheme(
           titleStyle: TextStyle(
             fontSize: 26,
@@ -42,9 +48,24 @@ class LoginScreen extends StatelessWidget {
         ),
         loginAfterSignUp: true,
         onSignup: (_) {},
+        initialAuthMode: AuthMode.login,
+        termsOfService: [
+          TermOfService(id: 'oka', mandatory: true, text: 'abov 18+')
+        ],
+        onSubmitAnimationCompleted: () {},
         loginProviders: [
-          LoginProvider(callback: () {}, icon: FontAwesomeIcons.google),
-          LoginProvider(callback: () {}, icon: FontAwesomeIcons.phone),
+          LoginProvider(
+            callback: () {},
+            icon: FontAwesomeIcons.google,
+            label: 'Google',
+            animated: true,
+          ),
+          LoginProvider(
+              callback: () {}, icon: FontAwesomeIcons.phone, label: 'Phone'),
+          LoginProvider(
+              callback: () => anonymous(),
+              icon: FontAwesomeIcons.person,
+              label: 'Guest'),
         ],
         onLogin: (_) {},
         onRecoverPassword: (_) {},
