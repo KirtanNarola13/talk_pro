@@ -17,16 +17,23 @@ class LoginScreen extends StatelessWidget {
               fontSize: 26,
               fontWeight: FontWeight.w500,
               letterSpacing: 3,
-              color: primaryColor),
-          bodyStyle: TextStyle(color: primaryColor),
-          primaryColor: primaryColor.withOpacity(0.5),
+              color: appColor),
+          bodyStyle: TextStyle(color: appColor),
+          primaryColor: appColor.withOpacity(0.5),
           cardTheme: CardTheme(
-            shadowColor: primaryColor,
+            shadowColor: appColor,
+            shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(100.0)),
           ),
+          primaryColorAsInputLabel: true,
+          cardInitialHeight: 200,
           buttonTheme: LoginButtonTheme(
             elevation: 5,
-            highlightColor: Colors.white,
             backgroundColor: primaryColor,
+            shape: BeveledRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            splashColor: appColor,
           ),
           errorColor: Colors.black,
         ),
