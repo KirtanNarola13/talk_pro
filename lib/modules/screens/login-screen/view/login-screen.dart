@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:talk_pro/utils/color.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -9,7 +10,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FlutterLogin(
-        logo: const AssetImage('lib/assets/app-icon.png'),
+        logo: 'lib/assets/app-icon.png',
         title: 'TALK PRO',
         theme: LoginTheme(
           titleStyle: TextStyle(
@@ -24,36 +25,29 @@ class LoginScreen extends StatelessWidget {
             letterSpacing: 3,
             color: primaryTextColor,
           ),
-          bodyStyle: TextStyle(color: primaryColor),
-          inputTheme:
-              InputDecorationTheme(labelStyle: TextStyle(color: subTextColor)),
-          textFieldStyle: TextStyle(
-            color: primaryTextColor,
-          ),
-          primaryColor: background,
+          primaryColor: subBackground.withOpacity(0.5),
           cardTheme: CardTheme(
-            shadowColor: subBackground,
+            shadowColor: primaryTextColor,
             shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(100.0)),
           ),
-          primaryColorAsInputLabel: true,
-          cardInitialHeight: 200,
           buttonTheme: LoginButtonTheme(
             elevation: 5,
-            backgroundColor: subBackground,
+            backgroundColor: primaryTextColor,
             shape: BeveledRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
             splashColor: background,
           ),
-          errorColor: primaryTextColor,
         ),
-        hideForgotPasswordButton: true,
-        validateUserImmediately: true,
         loginAfterSignUp: true,
-        onLogin: (val) {},
-        onRecoverPassword: (val) {},
-        onSignup: (val) {},
+        onSignup: (_) {},
+        loginProviders: [
+          LoginProvider(callback: () {}, icon: FontAwesomeIcons.google),
+          LoginProvider(callback: () {}, icon: FontAwesomeIcons.phone),
+        ],
+        onLogin: (_) {},
+        onRecoverPassword: (_) {},
       ),
     );
   }
