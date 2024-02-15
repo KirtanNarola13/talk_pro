@@ -8,20 +8,31 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: FlutterLogin(
         logo: const AssetImage('lib/assets/app-icon.png'),
         title: 'TALK PRO',
         theme: LoginTheme(
           titleStyle: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 3,
-              color: appColor),
-          bodyStyle: TextStyle(color: appColor),
-          primaryColor: appColor.withOpacity(0.5),
+            fontSize: 26,
+            fontWeight: FontWeight.bold,
+            shadows: [
+              Shadow(
+                color: subBackground,
+                offset: Offset(-0.5, -3),
+              ),
+            ],
+            letterSpacing: 3,
+            color: primaryTextColor,
+          ),
+          bodyStyle: TextStyle(color: primaryColor),
+          inputTheme:
+              InputDecorationTheme(labelStyle: TextStyle(color: subTextColor)),
+          textFieldStyle: TextStyle(
+            color: primaryTextColor,
+          ),
+          primaryColor: background,
           cardTheme: CardTheme(
-            shadowColor: appColor,
+            shadowColor: subBackground,
             shape: ContinuousRectangleBorder(
                 borderRadius: BorderRadius.circular(100.0)),
           ),
@@ -29,14 +40,17 @@ class LoginScreen extends StatelessWidget {
           cardInitialHeight: 200,
           buttonTheme: LoginButtonTheme(
             elevation: 5,
-            backgroundColor: primaryColor,
+            backgroundColor: subBackground,
             shape: BeveledRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
-            splashColor: appColor,
+            splashColor: background,
           ),
-          errorColor: Colors.black,
+          errorColor: primaryTextColor,
         ),
+        hideForgotPasswordButton: true,
+        validateUserImmediately: true,
+        loginAfterSignUp: true,
         onLogin: (val) {},
         onRecoverPassword: (val) {},
         onSignup: (val) {},

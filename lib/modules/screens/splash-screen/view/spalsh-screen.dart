@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: Scaffold(
-        backgroundColor: appColor.withOpacity(0.5),
+        backgroundColor: background.withOpacity(0.5),
         body: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -36,7 +36,7 @@ class SplashScreen extends StatelessWidget {
                     letterSpacing: 3,
                     fontWeight: FontWeight.bold,
                     wordSpacing: 5,
-                    color: appColor,
+                    color: primaryTextColor,
                   ),
                 ),
               ),
