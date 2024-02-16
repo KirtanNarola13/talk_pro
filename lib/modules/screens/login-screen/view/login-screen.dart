@@ -1,73 +1,259 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_login/flutter_login.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:talk_pro/modules/screens/login-screen/controller/login-controller.dart';
 import 'package:talk_pro/modules/screens/login-screen/view/constant/const.dart';
-import 'package:talk_pro/utils/auth-helper.dart';
+import 'package:talk_pro/modules/screens/login-screen/view/constant/string.dart';
 import 'package:talk_pro/utils/color.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+// Import other dependencies and files as needed
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({Key? key}) : super(key: key);
+
+  final _talk = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: FlutterLogin(
-        logo: 'lib/assets/app-icon.png',
-        title: 'TALK PRO',
-        titleTag: 'talk-pro',
-        theme: LoginTheme(
-          titleStyle: TextStyle(
-            fontSize: 26,
-            fontWeight: FontWeight.bold,
-            shadows: [
-              Shadow(
-                color: subBackground,
-                offset: const Offset(-0.5, -3),
-              ),
-            ],
-            letterSpacing: 3,
-            color: primaryTextColor,
-          ),
-          pageColorDark: primaryColor,
-          pageColorLight: primaryColor,
-          primaryColor: subBackground.withOpacity(0.5),
-          cardTheme: CardTheme(
-            shadowColor: primaryTextColor,
-            shape: ContinuousRectangleBorder(
-                borderRadius: BorderRadius.circular(100.0)),
-          ),
-          buttonTheme: LoginButtonTheme(
-            elevation: 5,
-            backgroundColor: primaryTextColor,
-            shape: BeveledRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
+    LoginController loginController = Get.put(LoginController());
+
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: h / 30,
             ),
-            splashColor: background,
-          ),
+            SafeArea(
+              child: Container(
+                height: h / 4.5,
+                padding: const EdgeInsets.only(left: 20, top: 20),
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Login to your',
+                      style: TextStyle(
+                        fontSize: 37,
+                      ),
+                    ),
+                    Text(
+                      'Account',
+                      style: TextStyle(
+                        fontSize: 37,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: h / 2.8,
+              margin: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+              ),
+              child: Form(
+                key: _talk,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        height: h / 35,
+                      ),
+                      TextFormField(
+                        onSaved: (String? val) {
+                          emailCon.text = val!;
+                        },
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.length <= 10 ||
+                              value.length >= 10) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        controller: emailCon,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            borderSide: BorderSide(
+                              color: Colors.black,
+                              width: 10,
+                            ),
+                          ),
+                          prefixIcon: Padding(
+                            padding: EdgeInsets.all(0.0),
+                            child: Icon(
+                              Icons.email_outlined,
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: h / 35,
+                      ),
+                      TextFormField(
+                        onSaved: (String? val) {
+                          passCon.text = val!;
+                        },
+                        validator: (value) {
+                          if (value!.length < 6) {
+                            return 'Password is too short';
+                          }
+                          return null;
+                        },
+                        controller: passCon,
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            borderSide: BorderSide(
+                              width: 10,
+                            ),
+                          ),
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.all(0.0),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.visibility,
+                              ),
+                            ),
+                          ),
+                        ),
+                        obscureText: true,
+                      ),
+                      SizedBox(
+                        height: h / 35,
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          FocusScope.of(context).unfocus();
+                          if (_talk.currentState!.validate()) {
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Invalid Email or Password'),
+                              ),
+                            );
+                          }
+                        },
+                        child: GetBuilder<LoginController>(
+                          builder: (controller) {
+                            return Container(
+                              alignment: Alignment.center,
+                              margin: const EdgeInsets.all(5),
+                              width: w / 1.5,
+                              height: h / 13,
+                              decoration: BoxDecoration(
+                                color: (Get.isDarkMode == true)
+                                    ? Colors.white
+                                    : Colors.black,
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              child: controller.isLoading
+                                  ? CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        (Get.isDarkMode == true)
+                                            ? Colors.black
+                                            : Colors.white,
+                                      ),
+                                    )
+                                  : Text('Sign In',
+                                      style: TextStyle(
+                                        color: (Get.isDarkMode == true)
+                                            ? Colors.black
+                                            : Colors.white,
+                                        fontSize: 22,
+                                      )),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(30),
+              child: loginStack(),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                loginContainer(img: 'lib/assets/google.png', context: context),
+                SizedBox(
+                  width: w / 10,
+                ),
+                loginContainer(
+                    img: (Get.isDarkMode == true)
+                        ? 'lib/assets/github-white.png'
+                        : 'lib/assets/github-black.png',
+                    context: context),
+                SizedBox(
+                  width: w / 10,
+                ),
+                GestureDetector(
+                  onTap: anonymous,
+                  child: loginContainer(
+                      img: (Get.isDarkMode == true)
+                          ? 'lib/assets/guest-white.png'
+                          : 'lib/assets/guest-black.png',
+                      context: context),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: h / 7,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Don\'t have an account? ',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Text(
+                    'Sign up',
+                    style: TextStyle(
+                      fontSize: 16,
+                      decoration: TextDecoration.underline,
+                      // Change to your desired color
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-        loginAfterSignUp: true,
-        onSignup: (_) {},
-        initialAuthMode: AuthMode.login,
-        onSubmitAnimationCompleted: () {},
-        loginProviders: [
-          LoginProvider(
-            callback: () {},
-            icon: FontAwesomeIcons.google,
-            label: 'Google',
-            animated: true,
-          ),
-          LoginProvider(
-              callback: () {}, icon: FontAwesomeIcons.phone, label: 'Phone'),
-          LoginProvider(
-              callback: () => anonymous(),
-              icon: FontAwesomeIcons.person,
-              label: 'Guest'),
-        ],
-        onLogin: (_) {},
-        onRecoverPassword: (_) {},
       ),
     );
   }

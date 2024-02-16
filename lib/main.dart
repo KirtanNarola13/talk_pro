@@ -21,7 +21,8 @@ void main() async {
           textTheme: GoogleFonts.openSansTextTheme()),
       darkTheme: ThemeData.dark(
         useMaterial3: true,
-      ),
+      ).copyWith(
+          primaryColor: Colors.white, scaffoldBackgroundColor: Colors.black),
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       getPages: [
@@ -31,7 +32,7 @@ void main() async {
         ),
         GetPage(
           name: '/login',
-          page: () => const LoginScreen()!,
+          page: () => LoginScreen(),
         ),
       ],
     ),
