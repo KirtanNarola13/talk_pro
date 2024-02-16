@@ -25,12 +25,14 @@ class LoginScreen extends StatelessWidget {
             shadows: [
               Shadow(
                 color: subBackground,
-                offset: Offset(-0.5, -3),
+                offset: const Offset(-0.5, -3),
               ),
             ],
             letterSpacing: 3,
             color: primaryTextColor,
           ),
+          pageColorDark: primaryColor,
+          pageColorLight: primaryColor,
           primaryColor: subBackground.withOpacity(0.5),
           cardTheme: CardTheme(
             shadowColor: primaryTextColor,
@@ -49,9 +51,6 @@ class LoginScreen extends StatelessWidget {
         loginAfterSignUp: true,
         onSignup: (_) {},
         initialAuthMode: AuthMode.login,
-        termsOfService: [
-          TermOfService(id: 'oka', mandatory: true, text: 'abov 18+')
-        ],
         onSubmitAnimationCompleted: () {},
         loginProviders: [
           LoginProvider(
