@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:talk_pro/modules/screens/login-screen/view/login-screen.dart';
 import 'package:talk_pro/utils/color.dart';
-
 import 'firebase_options.dart';
+import 'modules/screens/sign-up-screen/views/sign-up-screen.dart';
 import 'modules/screens/splash-screen/view/spalsh-screen.dart';
 
 void main() async {
@@ -33,6 +33,10 @@ void main() async {
         GetPage(
           name: '/login',
           page: () => LoginScreen(),
+        ),
+        GetPage(
+          name: '/signup',
+          page: () => SignUpScreen(),
         ),
       ],
     ),

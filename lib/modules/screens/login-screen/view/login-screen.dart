@@ -240,7 +240,9 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed('/signup');
+                  },
                   child: const Text(
                     'Sign up',
                     style: TextStyle(
