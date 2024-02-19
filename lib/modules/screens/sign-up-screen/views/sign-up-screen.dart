@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:talk_pro/modules/screens/login-screen/model/sign-up-model.dart';
 import 'package:talk_pro/modules/screens/sign-up-screen/views/constant/string.dart';
-import 'package:talk_pro/utils/auth-helper.dart';
 
 import '../../login-screen/controller/login-controller.dart';
 import '../../login-screen/view/constant/const.dart';
@@ -164,12 +162,15 @@ class SignUpScreen extends StatelessWidget {
                   onTap: () async {
                     FocusScope.of(context).unfocus();
                     if (_talkKey.currentState!.validate() &&
-                        s_password == s_conformPassword) {
-                      signUp(email: s_email!, password: s_password!);
+                        s_passCon.text == s_conPassCon.text) {
+                      s_emailCon.clear();
+                      s_passCon.clear();
+                      s_conPassCon.clear();
+                      signUp(email: s_emailCon.text, password: s_passCon.text);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                          content: Text('Invalid Email or Password'),
+                          content: Text('Password does not match'),
                         ),
                       );
                     }
