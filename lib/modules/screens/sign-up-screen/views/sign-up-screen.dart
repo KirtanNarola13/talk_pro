@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talk_pro/modules/screens/login-screen/model/sign-up-model.dart';
@@ -32,12 +31,12 @@ class SignUpScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.topLeft,
                   height: h / 4.5,
-                  padding: const EdgeInsets.only(left: 20, top: 20),
+                  padding: const EdgeInsets.only(top: 20),
                   child: const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Login to your',
+                        'Create your',
                         style: TextStyle(
                           fontSize: 37,
                         ),
@@ -85,7 +84,7 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: h / 50,
+                      height: h / 45,
                     ),
                     TextFormField(
                       onSaved: (String? val) {
@@ -121,7 +120,7 @@ class SignUpScreen extends StatelessWidget {
                       obscureText: true,
                     ),
                     SizedBox(
-                      height: h / 50,
+                      height: h / 45,
                     ),
                     TextFormField(
                       onSaved: (String? val) {
@@ -159,16 +158,14 @@ class SignUpScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: h / 50,
+                  height: h / 45,
                 ),
                 GestureDetector(
                   onTap: () async {
                     FocusScope.of(context).unfocus();
                     if (_talkKey.currentState!.validate() &&
                         s_password == s_conformPassword) {
-                      SignUpModel user =
-                          SignUpModel(email: s_email!, password: s_password!);
-                      signUp();
+                      signUp(email: s_email!, password: s_password!);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
@@ -212,11 +209,11 @@ class SignUpScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: h / 50,
+                  height: h / 45,
                 ),
                 loginStack(),
                 SizedBox(
-                  height: h / 50,
+                  height: h / 150,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

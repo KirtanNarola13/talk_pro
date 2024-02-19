@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talk_pro/modules/screens/login-screen/model/sign-up-model.dart';
@@ -8,17 +6,17 @@ import 'package:talk_pro/modules/screens/login-screen/view/constant/string.dart'
 
 import '../../../../../utils/auth-helper.dart';
 
-Future<String?>? anonymous() async {
+anonymous() async {
   Map<String, dynamic> res = await AuthHelper.authHelper.signInAnonymous();
   if (res['error'] != null) {
     log("login failed");
   } else {
     log("login success");
+    Get.toNamed('/home');
   }
-  return null;
 }
 
-signUp() async {
+signUp({required String email, required String password}) async {
   SignUpModel signUpModel =
       SignUpModel(email: email ?? "", password: password ?? "");
   Map<String, dynamic> res =
