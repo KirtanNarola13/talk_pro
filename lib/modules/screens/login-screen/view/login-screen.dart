@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -79,10 +80,7 @@ class LoginScreen extends StatelessWidget {
                           emailCon.text = val!;
                         },
                         validator: (value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.length <= 10 ||
-                              value.length >= 10) {
+                          if (value == null || value.isEmpty) {
                             return 'Please enter some text';
                           }
                           return null;
@@ -151,7 +149,13 @@ class LoginScreen extends StatelessWidget {
                         onTap: () async {
                           FocusScope.of(context).unfocus();
                           if (_talk.currentState!.validate()) {
+                            loginController.showLoading();
+                            login(
+                                email: emailCon.text,
+                                password: passCon.text,
+                                context: context);
                           } else {
+                            loginController.hideLoading();
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text('Invalid Email or Password'),

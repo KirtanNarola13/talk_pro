@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  bool _isLoading = false;
+  final RxBool _isLoading = false.obs; // Use RxBool for reactivity
 
-  bool get isLoading => _isLoading;
+  bool get isLoading => _isLoading.value;
 
   void showLoading() {
-    _isLoading = true;
+    _isLoading.value = true;
     update();
   }
 
   void hideLoading() {
-    _isLoading = false;
+    _isLoading.value = false;
     update();
   }
 }
