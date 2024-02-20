@@ -12,7 +12,20 @@
           "package_name": "com.example.talk_pro"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "910999530990-feh3rlo85pmb1gm6ed3jiqai4vg6020s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.talk_pro",
+            "certificate_hash": "7b6da0797fa913ee1bb5b1bc09cfb99a2c5e185c"
+          }
+        },
+        {
+          "client_id": "910999530990-08u89q2fstpf4206fqd4m0i7cu6ogkjc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyChdOIFjtltUhrvDAK7piP8pFc353VNC7A"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910999530990-08u89q2fstpf4206fqd4m0i7cu6ogkjc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "910999530990-001fe2r57kvul9d4pdodm5tgqu1c26pu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.talkPro"
+              }
+            }
+          ]
         }
       }
     }

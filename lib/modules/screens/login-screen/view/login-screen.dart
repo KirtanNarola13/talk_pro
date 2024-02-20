@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:talk_pro/modules/screens/login-screen/controller/login-controller.dart';
@@ -209,7 +210,10 @@ class LoginScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                loginContainer(img: 'lib/assets/google.png', context: context),
+                GestureDetector(
+                    onTap: google,
+                    child: loginContainer(
+                        img: 'lib/assets/google.png', context: context)),
                 SizedBox(
                   width: w / 10,
                 ),

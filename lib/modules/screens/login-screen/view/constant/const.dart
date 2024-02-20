@@ -50,15 +50,12 @@ login(
   }
 }
 
-google({required BuildContext context}) async {
+google() async {
   Map<String, dynamic> res = await AuthHelper.authHelper.signInWithGoogle();
   if (res['error'] != null) {
-    return CherryToast.error(title: const Text("Login Failed")).show(context);
+    return log('login failed');
   } else {
-    return CherryToast.success(
-        title: const Text(
-      "Login Success",
-    )).show(context);
+    return log('login success');
   }
 }
 
