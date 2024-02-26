@@ -1,4 +1,7 @@
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:talk_pro/modules/screens/sign-up-screen/views/constant/string.dart';
 
@@ -23,227 +26,226 @@ class SignUpScreen extends StatelessWidget {
             key: _talkKey,
             child: Column(
               children: [
-                SizedBox(
-                  height: h / 100,
-                ),
-                Container(
-                  alignment: Alignment.topLeft,
-                  height: h / 4.5,
-                  padding: const EdgeInsets.only(top: 20),
-                  child: const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Create your',
-                        style: TextStyle(
-                          fontSize: 37,
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.topLeft,
+                    height: h / 4.5,
+                    padding: const EdgeInsets.only(top: 20),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Create your',
+                          style: TextStyle(
+                            fontSize: 37,
+                          ),
                         ),
-                      ),
-                      Text(
-                        'Account',
-                        style: TextStyle(
-                          fontSize: 37,
-                          fontWeight: FontWeight.bold,
+                        Text(
+                          'Account',
+                          style: TextStyle(
+                            fontSize: 37,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-                Column(
-                  children: [
-                    TextFormField(
-                      onSaved: (String? val) {
-                        s_emailCon.text = val!;
-                      },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter some text';
-                        }
-                        return null;
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      controller: s_emailCon,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            width: 5,
-                          ),
-                        ),
-                        prefixIcon: Padding(
-                          padding: EdgeInsets.all(0.0),
-                          child: Icon(
-                            Icons.email_outlined,
-                          ), // icon is 48px widget.
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: h / 45,
-                    ),
-                    TextFormField(
-                      onSaved: (String? val) {
-                        s_passCon.text = val!;
-                      },
-                      validator: (value) {
-                        if (value!.length < 6) {
-                          return 'Password is too short';
-                        }
-                        return null;
-                      },
-                      controller: s_passCon,
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            width: 10,
-                          ),
-                        ),
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.visibility,
+                Expanded(
+                  flex: 3,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          onSaved: (String? val) {
+                            s_emailCon.text = val!;
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          controller: s_emailCon,
+                          decoration: const InputDecoration(
+                            labelText: 'Email',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              borderSide: BorderSide(
+                                width: 5,
+                              ),
+                            ),
+                            prefixIcon: Padding(
+                              padding: EdgeInsets.all(0.0),
+                              child: Icon(
+                                Icons.email_outlined,
+                              ), // icon is 48px widget.
                             ),
                           ),
                         ),
-                      ),
-                      obscureText: true,
-                    ),
-                    SizedBox(
-                      height: h / 45,
-                    ),
-                    TextFormField(
-                      onSaved: (String? val) {
-                        s_conPassCon.text = val!;
-                      },
-                      validator: (value) {
-                        if (value!.length < 6) {
-                          return 'Password is too short';
-                        }
-                        return null;
-                      },
-                      controller: s_conPassCon,
-                      decoration: InputDecoration(
-                        labelText: 'Conform Password',
-                        border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          borderSide: BorderSide(
-                            width: 10,
-                          ),
+                        SizedBox(
+                          height: h / 45,
                         ),
-                        prefixIcon: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.visibility,
+                        TextFormField(
+                          onSaved: (String? val) {
+                            s_passCon.text = val!;
+                          },
+                          validator: (value) {
+                            if (value!.length < 6) {
+                              return 'Password is too short';
+                            }
+                            return null;
+                          },
+                          controller: s_passCon,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              borderSide: BorderSide(
+                                width: 10,
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      obscureText: true,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: h / 45,
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    FocusScope.of(context).unfocus();
-                    if (_talkKey.currentState!.validate() &&
-                        s_passCon.text == s_conPassCon.text) {
-                      s_emailCon.clear();
-                      s_passCon.clear();
-                      s_conPassCon.clear();
-                      signUp(email: s_emailCon.text, password: s_passCon.text);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Password does not match'),
-                        ),
-                      );
-                    }
-                  },
-                  child: GetBuilder<LoginController>(
-                    builder: (controller) {
-                      return Container(
-                        alignment: Alignment.center,
-                        margin: const EdgeInsets.all(5),
-                        width: w / 1.5,
-                        height: h / 13,
-                        decoration: BoxDecoration(
-                          color: (Get.isDarkMode == true)
-                              ? Colors.white
-                              : Colors.black,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        child: controller.isLoading
-                            ? CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  (Get.isDarkMode == true)
-                                      ? Colors.black
-                                      : Colors.white,
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(0.0),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.visibility,
                                 ),
-                              )
-                            : Text('Sign Up',
-                                style: TextStyle(
+                              ),
+                            ),
+                          ),
+                          obscureText: true,
+                        ),
+                        SizedBox(
+                          height: h / 45,
+                        ),
+                        TextFormField(
+                          onSaved: (String? val) {
+                            s_conPassCon.text = val!;
+                          },
+                          validator: (value) {
+                            if (value!.length < 6) {
+                              return 'Password is too short';
+                            }
+                            return null;
+                          },
+                          controller: s_conPassCon,
+                          decoration: InputDecoration(
+                            labelText: 'Conform Password',
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              borderSide: BorderSide(
+                                width: 10,
+                              ),
+                            ),
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(0.0),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.visibility,
+                                ),
+                              ),
+                            ),
+                          ),
+                          obscureText: true,
+                        ),
+                        SizedBox(
+                          height: h / 45,
+                        ),
+                        GestureDetector(
+                          onTap: () async {
+                            FocusScope.of(context).unfocus();
+                            if (_talkKey.currentState!.validate() &&
+                                s_passCon.text == s_conPassCon.text) {
+                              signUp(
+                                email: s_emailCon.text,
+                                password: s_passCon.text,
+                              );
+                              s_emailCon.clear();
+                              s_passCon.clear();
+                              s_conPassCon.clear();
+                            } else {}
+                          },
+                          child: GetBuilder<LoginController>(
+                            builder: (controller) {
+                              return Container(
+                                alignment: Alignment.center,
+                                margin: const EdgeInsets.all(5),
+                                width: w / 1.5,
+                                height: h / 13,
+                                decoration: BoxDecoration(
                                   color: (Get.isDarkMode == true)
-                                      ? Colors.black
-                                      : Colors.white,
-                                  fontSize: 22,
-                                )),
-                      );
-                    },
+                                      ? Colors.white
+                                      : Colors.black,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                ),
+                                child: controller.isLoading
+                                    ? CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          (Get.isDarkMode == true)
+                                              ? Colors.black
+                                              : Colors.white,
+                                        ),
+                                      )
+                                    : Text('Sign Up',
+                                        style: TextStyle(
+                                          color: (Get.isDarkMode == true)
+                                              ? Colors.black
+                                              : Colors.white,
+                                          fontSize: 22,
+                                        )),
+                              );
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: h / 120,
+                        ),
+                        loginStack(),
+                        SizedBox(
+                          height: h / 120,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            loginContainer(
+                                img: 'lib/assets/google.png', context: context),
+                            SizedBox(
+                              width: w / 10,
+                            ),
+                            loginContainer(
+                                img: (Get.isDarkMode == true)
+                                    ? 'lib/assets/github-white.png'
+                                    : 'lib/assets/github-black.png',
+                                context: context),
+                            SizedBox(
+                              width: w / 10,
+                            ),
+                            GestureDetector(
+                              onTap: anonymous,
+                              child: loginContainer(
+                                  img: (Get.isDarkMode == true)
+                                      ? 'lib/assets/guest-white.png'
+                                      : 'lib/assets/guest-black.png',
+                                  context: context),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: h / 45,
-                ),
-                loginStack(),
-                SizedBox(
-                  height: h / 150,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    loginContainer(
-                        img: 'lib/assets/google.png', context: context),
-                    SizedBox(
-                      width: w / 10,
-                    ),
-                    loginContainer(
-                        img: (Get.isDarkMode == true)
-                            ? 'lib/assets/github-white.png'
-                            : 'lib/assets/github-black.png',
-                        context: context),
-                    SizedBox(
-                      width: w / 10,
-                    ),
-                    GestureDetector(
-                      onTap: anonymous,
-                      child: loginContainer(
-                          img: (Get.isDarkMode == true)
-                              ? 'lib/assets/guest-white.png'
-                              : 'lib/assets/guest-black.png',
-                          context: context),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: h / 5.5,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -267,6 +269,9 @@ class SignUpScreen extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: h / 50,
                 ),
               ],
             ),

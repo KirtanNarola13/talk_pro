@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:talk_pro/modules/screens/home-screen/view/home-screen.dart';
 import 'package:talk_pro/modules/screens/login-screen/view/login-screen.dart';
 import 'package:talk_pro/utils/color.dart';
 import 'firebase_options.dart';
@@ -37,6 +38,10 @@ void main() async {
         GetPage(
           name: '/signup',
           page: () => SignUpScreen(),
+        ),
+        GetPage(
+          name: '/home',
+          page: () => HomeScreen(),
         ),
       ],
     ),

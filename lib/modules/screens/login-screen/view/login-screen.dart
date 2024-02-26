@@ -164,7 +164,7 @@ class LoginScreen extends StatelessWidget {
                             );
                           }
                         },
-                        child: GetBuilder<LoginController>(
+                        child: GetX<LoginController>(
                           builder: (controller) {
                             return Container(
                               alignment: Alignment.center,

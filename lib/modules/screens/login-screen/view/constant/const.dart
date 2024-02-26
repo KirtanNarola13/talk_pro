@@ -16,7 +16,7 @@ anonymous() async {
     log("login failed");
   } else {
     log("login success");
-    Get.toNamed('/home');
+    Get.offAllNamed('/home');
   }
 }
 
@@ -29,6 +29,8 @@ signUp({required String email, required String password}) async {
     log('signup failed');
   } else {
     log('user created');
+
+    Get.toNamed('/login');
   }
 }
 
@@ -45,6 +47,7 @@ login(
       title: const Text("Login Failed"),
     ).show(context);
   } else {
+    Get.offAllNamed('/home');
     return CherryToast.success(title: const Text("Login Success"))
         .show(context);
   }
@@ -55,6 +58,7 @@ google() async {
   if (res['error'] != null) {
     return log('login failed');
   } else {
+    Get.offAllNamed('/home');
     return log('login success');
   }
 }
