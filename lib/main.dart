@@ -41,7 +41,7 @@ void main() async {
         ),
         GetPage(
           name: '/home',
-          page: () => HomeScreen(),
+          page: () => const HomeScreen(),
         ),
       ],
     ),

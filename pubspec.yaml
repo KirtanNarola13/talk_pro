@@ -38,6 +38,7 @@ dependencies:
   get:
   firebase_core:
   firebase_auth:
+  cloud_firestore:
   flutter_login:
   google_sign_in:
   google_fonts:

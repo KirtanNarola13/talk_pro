@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talk_pro/modules/screens/login-screen/model/sign-up-model.dart';
+import 'package:talk_pro/utils/firestore_helper.dart';
 
 import '../../../../../utils/auth-helper.dart';
 
@@ -48,8 +49,7 @@ login(
     ).show(context);
   } else {
     Get.offAllNamed('/home');
-    return CherryToast.success(title: const Text("Login Success"))
-        .show(context);
+    FireStoreHelper.fireStoreHelper.addUser();
   }
 }
 
@@ -59,7 +59,7 @@ google() async {
     return log('login failed');
   } else {
     Get.offAllNamed('/home');
-    return log('login success');
+    FireStoreHelper.fireStoreHelper.addUser();
   }
 }
 
