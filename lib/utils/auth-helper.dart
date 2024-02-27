@@ -75,4 +75,10 @@ class AuthHelper {
     }
     return res;
   }
+
+  //todo: Sign Out
+  Future<void> signOut() async {
+    await auth.signOut();
+    await googleSignIn.signOut();
+  }
 }

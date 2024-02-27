@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:talk_pro/utils/auth-helper.dart';
 
@@ -7,6 +8,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    logout() {
+      AuthHelper.authHelper.signOut();
+      Get.toNamed('/');
+    }
+
     double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;
     return Scaffold(
@@ -36,7 +42,7 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   IconButton(
                     onPressed: () {
-                      AuthHelper.googleSignIn.signOut();
+                      logout();
                     },
                     icon: const Icon(Icons.favorite_border),
                     splashRadius: 5,
