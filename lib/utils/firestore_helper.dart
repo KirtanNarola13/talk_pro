@@ -28,4 +28,8 @@ class FireStoreHelper {
     });
     log("User Added");
   }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getPost() {
+    return firestore.collection('posts').snapshots();
+  }
 }
