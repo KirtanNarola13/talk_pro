@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:talk_pro/constants/string.dart';
+import 'package:talk_pro/modules/screens/chat-app/model/chat-model.dart';
 import 'package:talk_pro/utils/auth-helper.dart';
 import 'package:talk_pro/utils/firestore_helper.dart';
 
@@ -20,7 +22,7 @@ class UserShow extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_sharp),
+          icon: const Icon(Icons.arrow_back_sharp),
         ),
       ),
       body: StreamBuilder(
@@ -38,8 +40,18 @@ class UserShow extends StatelessWidget {
                 itemCount: users?.length,
                 itemBuilder: (ctx, i) {
                   return ListTile(
-                    onTap: () {
-                      Get.toNamed('/chat');
+                    onTap: () async {
+                      Chat chatDetails = Chat(
+                          message: '',
+                          receiver: users?[i]['uid'],
+                          sender: AuthHelper.auth.currentUser!.uid);
+                      fetchedmsg = await FireStoreHelper.fireStoreHelper
+                          .fetchMessage(chatdetails: chatDetails);
+                      Get.toNamed('/chat', arguments: [
+                        "${users?[i]['name']}",
+                        "${users?[i]['dp']}",
+                        "${users?[i]['uid']}",
+                      ]);
                     },
                     title: Text("${users?[i]['name']}"),
                     subtitle: Text("${users?[i]['email']}"),
@@ -51,7 +63,7 @@ class UserShow extends StatelessWidget {
                   );
                 });
           }
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         },
       ),
     );
