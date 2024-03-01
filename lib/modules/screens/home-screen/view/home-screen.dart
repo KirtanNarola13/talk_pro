@@ -12,13 +12,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     logout() {
       AuthHelper.authHelper.signOut();
       Get.toNamed('/login');
     }
 
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
         children: [
@@ -46,15 +46,25 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   children: [
                     IconButton(
+                      icon: Image(
+                        image: AssetImage((Get.isDarkMode == true)
+                            ? "lib/assets/like-white.png"
+                            : "lib/assets/like-dark.png"),
+                      ),
                       onPressed: () {
                         logout();
                       },
-                      icon: const Icon(Icons.favorite_border),
                       splashRadius: 5,
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.chat_bubble_outline),
+                      onPressed: () {
+                        Get.toNamed('/userShow');
+                      },
+                      icon: Image(
+                        image: AssetImage((Get.isDarkMode == true)
+                            ? "lib/assets/message-white.png"
+                            : "lib/assets/message-black.png"),
+                      ),
                     ),
                   ],
                 ),
@@ -78,40 +88,55 @@ class HomeScreen extends StatelessWidget {
                     itemBuilder: (context, i) {
                       log("return");
                       return Container(
-                        margin: EdgeInsets.only(top: 20, bottom: 20),
+                        margin: const EdgeInsets.only(top: 20, bottom: 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                CircleAvatar(
-                                  foregroundImage:
-                                      NetworkImage(posts?[i]['dp']),
-                                  radius: 21,
-                                ),
-                                SizedBox(
-                                  width: w / 80,
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                Row(
                                   children: [
-                                    Text(
-                                      posts?[i]['username'],
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                    CircleAvatar(
+                                      foregroundImage:
+                                          NetworkImage(posts?[i]['dp']),
+                                      radius: 21,
                                     ),
-                                    Text(
-                                      "4 minutes ago", // You can use the actual time
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                      ),
+                                    SizedBox(
+                                      width: w / 80,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          posts?[i]['username'],
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        const Text(
+                                          "4 minutes ago", // You can use the actual time
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Image(
+                                    image: AssetImage((Get.isDarkMode == true)
+                                        ? "lib/assets/dots-white.png"
+                                        : "lib/assets/dots-dark.png"),
+                                    height: h / 40,
+                                  ),
+                                ),
                               ],
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Container(
                               height: h / 2,
                               width: double.infinity,
@@ -120,19 +145,43 @@ class HomeScreen extends StatelessWidget {
                                 fit: BoxFit.fitWidth,
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Text(
                               posts?[i]['description'],
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
                               ),
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               children: [
-                                Icon(Icons.favorite_border),
-                                SizedBox(width: 5),
-                                Icon(Icons.chat_bubble_outline),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Image(
+                                    image: AssetImage((Get.isDarkMode == true)
+                                        ? "lib/assets/like-white.png"
+                                        : "lib/assets/like-dark.png"),
+                                    height: h / 35,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Image(
+                                    image: AssetImage((Get.isDarkMode == true)
+                                        ? "lib/assets/com-white.png"
+                                        : "lib/assets/com-dark.png"),
+                                    height: h / 35,
+                                  ),
+                                ),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Image(
+                                    image: AssetImage((Get.isDarkMode == true)
+                                        ? "lib/assets/send-white.png"
+                                        : "lib/assets/send-black.png"),
+                                    height: h / 35,
+                                  ),
+                                ),
                               ],
                             ),
                           ],

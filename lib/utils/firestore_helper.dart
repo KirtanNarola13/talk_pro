@@ -32,4 +32,11 @@ class FireStoreHelper {
   Stream<QuerySnapshot<Map<String, dynamic>>> getPost() {
     return firestore.collection('posts').snapshots();
   }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchUser() {
+    return firestore
+        .collection('users')
+        .where('uid', isNotEqualTo: AuthHelper.auth.currentUser?.uid)
+        .snapshots();
+  }
 }

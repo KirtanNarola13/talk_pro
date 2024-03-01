@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:talk_pro/modules/screens/chat-app/view/chat-app.dart';
 import 'package:talk_pro/modules/screens/home-screen/view/home-screen.dart';
 import 'package:talk_pro/modules/screens/login-screen/view/login-screen.dart';
+import 'package:talk_pro/modules/screens/user-shows/view/user-show.dart';
 import 'package:talk_pro/utils/color.dart';
 import 'firebase_options.dart';
 import 'modules/screens/sign-up-screen/views/sign-up-screen.dart';
@@ -42,6 +44,14 @@ void main() async {
         GetPage(
           name: '/home',
           page: () => const HomeScreen(),
+        ),
+        GetPage(
+          name: '/userShow',
+          page: () => const UserShow(),
+        ),
+        GetPage(
+          name: '/chat',
+          page: () => const ChatScreen(),
         ),
       ],
     ),
