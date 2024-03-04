@@ -8,12 +8,13 @@ import 'package:talk_pro/utils/auth-helper.dart';
 import 'package:talk_pro/utils/firestore_helper.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key});
 
   @override
   Widget build(BuildContext context) {
     double h = MediaQuery.of(context).size.height;
     double w = MediaQuery.of(context).size.width;
+
     logout() {
       AuthHelper.authHelper.signOut();
       Get.toNamed('/login');
@@ -25,31 +26,29 @@ class HomeScreen extends StatelessWidget {
           SizedBox(
             height: h / 25,
           ),
-          Expanded(
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: w / 30),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: w / 30,
-                    ),
-                    Text(
-                      "Talk Pro",
-                      style: GoogleFonts.playball().copyWith(
-                        fontSize: 32,
-                        letterSpacing: 2,
-                      ),
-                    ),
-                  ],
+                Text(
+                  "Talk Pro",
+                  style: GoogleFonts.playball().copyWith(
+                    fontSize: 32,
+                    letterSpacing: 2,
+                  ),
                 ),
                 Row(
                   children: [
                     IconButton(
                       icon: Image(
-                        image: AssetImage((Get.isDarkMode == true)
-                            ? "lib/assets/like-white.png"
-                            : "lib/assets/like-dark.png"),
+                        image: AssetImage(
+                          Get.isDarkMode == true
+                              ? "lib/assets/like-white.png"
+                              : "lib/assets/like-dark.png",
+                        ),
+                        height: h / 40,
                       ),
                       onPressed: () {
                         logout();
@@ -61,9 +60,12 @@ class HomeScreen extends StatelessWidget {
                         Get.toNamed('/userShow');
                       },
                       icon: Image(
-                        image: AssetImage((Get.isDarkMode == true)
-                            ? "lib/assets/message-white.png"
-                            : "lib/assets/message-black.png"),
+                        image: AssetImage(
+                          Get.isDarkMode == true
+                              ? "lib/assets/message-white.png"
+                              : "lib/assets/message-black.png",
+                        ),
+                        height: h / 40,
                       ),
                     ),
                   ],
@@ -71,8 +73,52 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            height: h / 8,
+            child: StreamBuilder(
+              stream: FireStoreHelper.fireStoreHelper.fetchUser(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  List<QueryDocumentSnapshot<Map<String, dynamic>>>? users =
+                      snapshot.data?.docs;
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: users?.length,
+                    itemBuilder: (context, i) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              radius: h / 20,
+                              child: CircleAvatar(
+                                radius: 40,
+                                foregroundImage:
+                                    NetworkImage("${users?[i]['dp']}"),
+                              ),
+                            ),
+                            Text(
+                              "${users?[i]['name']}",
+                              style: const TextStyle(fontSize: 10),
+                            )
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(child: Text("${snapshot.error}"));
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+          ),
           Expanded(
-            flex: 20,
             child: StreamBuilder(
               stream: FireStoreHelper.fireStoreHelper.getPost(),
               builder: (context, snapshot) {
@@ -88,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                     itemBuilder: (context, i) {
                       log("return");
                       return Container(
-                        margin: const EdgeInsets.only(top: 20, bottom: 20),
+                        margin: const EdgeInsets.only(bottom: 20),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -116,7 +162,7 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                         ),
                                         const Text(
-                                          "4 minutes ago", // You can use the actual time
+                                          "4 minutes ago",
                                           style: TextStyle(
                                             color: Colors.grey,
                                           ),
@@ -128,7 +174,7 @@ class HomeScreen extends StatelessWidget {
                                 IconButton(
                                   onPressed: () {},
                                   icon: Image(
-                                    image: AssetImage((Get.isDarkMode == true)
+                                    image: AssetImage(Get.isDarkMode == true
                                         ? "lib/assets/dots-white.png"
                                         : "lib/assets/dots-dark.png"),
                                     height: h / 40,
@@ -146,19 +192,12 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            Text(
-                              posts?[i]['description'],
-                              style: const TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(height: 10),
                             Row(
                               children: [
                                 IconButton(
                                   onPressed: () {},
                                   icon: Image(
-                                    image: AssetImage((Get.isDarkMode == true)
+                                    image: AssetImage(Get.isDarkMode == true
                                         ? "lib/assets/like-white.png"
                                         : "lib/assets/like-dark.png"),
                                     height: h / 35,
@@ -167,7 +206,7 @@ class HomeScreen extends StatelessWidget {
                                 IconButton(
                                   onPressed: () {},
                                   icon: Image(
-                                    image: AssetImage((Get.isDarkMode == true)
+                                    image: AssetImage(Get.isDarkMode == true
                                         ? "lib/assets/com-white.png"
                                         : "lib/assets/com-dark.png"),
                                     height: h / 35,
@@ -176,13 +215,20 @@ class HomeScreen extends StatelessWidget {
                                 IconButton(
                                   onPressed: () {},
                                   icon: Image(
-                                    image: AssetImage((Get.isDarkMode == true)
+                                    image: AssetImage(Get.isDarkMode == true
                                         ? "lib/assets/send-white.png"
                                         : "lib/assets/send-black.png"),
                                     height: h / 35,
                                   ),
                                 ),
                               ],
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              posts?[i]['description'],
+                              style: const TextStyle(
+                                fontSize: 16,
+                              ),
                             ),
                           ],
                         ),

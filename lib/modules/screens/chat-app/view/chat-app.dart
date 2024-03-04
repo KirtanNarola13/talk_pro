@@ -22,7 +22,9 @@ class ChatScreen extends StatelessWidget {
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: NetworkImage(
-              "https://e0.pxfuel.com/wallpapers/672/579/desktop-wallpaper-black-gradient-red-gradient.jpg"),
+            "https://i.pinimg.com/736x/c3/48/c2/c348c2ec2d5c012fd80759195a2aea50.jpg",
+          ),
+          fit: BoxFit.cover,
         ),
       ),
       child: Scaffold(
@@ -60,27 +62,48 @@ class ChatScreen extends StatelessWidget {
                   List<QueryDocumentSnapshot<Map<String, dynamic>>>? messages =
                       snapshot.data?.docs;
 
-                  return ListView.builder(
-                      reverse: true,
-                      itemCount: messages?.length,
-                      itemBuilder: (ctx, i) {
-                        return Align(
-                          alignment:
-                              (arguments[2] != messages?[i]['receivedby'])
-                                  ? Alignment.centerLeft
-                                  : Alignment.centerRight,
-                          child: Chip(
-                            label: Text("${messages?[i]['message']}"),
-                          ),
-                        );
-                      });
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                        reverse: true,
+                        itemCount: messages?.length,
+                        itemBuilder: (ctx, i) {
+                          return Align(
+                            alignment:
+                                (arguments[2] != messages?[i]['receivedby'])
+                                    ? Alignment.centerLeft
+                                    : Alignment.centerRight,
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                top: 20,
+                              ),
+                              constraints: const BoxConstraints(
+                                maxWidth:
+                                    200.0, // Set your desired maximum width
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.grey
+                                    .withOpacity(0.5), // Set your desired color
+                                borderRadius: BorderRadius.circular(
+                                    8.0), // Adjust the radius as needed
+                              ),
+                              padding: const EdgeInsets.all(
+                                  8.0), // Adjust padding as needed
+                              child: Text(
+                                "${messages?[i]['message']}",
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          );
+                        }),
+                  );
                 }
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
               },
             )),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: chatTextField(receiver: arguments[2]),
+              child: instagramStyleTextField(receiver: arguments[2]),
             ),
           ],
         ),
@@ -88,28 +111,49 @@ class ChatScreen extends StatelessWidget {
     );
   }
 
-  TextFormField chatTextField({required String receiver}) => TextFormField(
-        cursorColor: Colors.black,
-        controller: messageController,
-        onChanged: (val) {
-          message = val;
-        },
-        decoration: InputDecoration(
-          suffixIcon: IconButton(
+  Container instagramStyleTextField({required String receiver}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      decoration: BoxDecoration(
+        color: Colors.grey.shade700,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.camera_alt_outlined),
+          ),
+          Expanded(
+            child: TextFormField(
+              cursorColor: Colors.black,
+              controller: messageController,
+              onChanged: (val) {
+                message = val;
+              },
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Send message...',
+                hintStyle: TextStyle(color: Colors.grey),
+              ),
+            ),
+          ),
+          IconButton(
             onPressed: () {
               log("$message");
-
+              messageController.clear();
               Chat chat = Chat(
                 message: message!,
                 receiver: receiver,
                 sender: AuthHelper.auth.currentUser!.uid,
               );
               FireStoreHelper.fireStoreHelper.sendMessage(chatdetails: chat);
-              messageController.clear();
+              message = null;
             },
-            icon: Icon(Icons.send),
+            icon: const Icon(Icons.send),
           ),
-          hintText: 'send message....',
-        ),
-      );
+        ],
+      ),
+    );
+  }
 }
