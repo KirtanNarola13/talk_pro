@@ -135,6 +135,7 @@ class HomeScreen extends StatelessWidget {
                       log("return");
                       return Container(
                         margin: const EdgeInsets.only(bottom: 20),
+                        padding: const EdgeInsets.only(left: 5, right: 5),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

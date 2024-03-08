@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:talk_pro/modules/screens/chat-app/view/chat-app.dart';
 import 'package:talk_pro/modules/screens/home-screen/view/home-screen.dart';
 import 'package:talk_pro/modules/screens/login-screen/view/login-screen.dart';
+import 'package:talk_pro/modules/screens/one-time-intro/view/one-time-intro.dart';
 import 'package:talk_pro/modules/screens/user-shows/view/user-show.dart';
 import 'package:talk_pro/utils/color.dart';
 import 'firebase_options.dart';
@@ -32,6 +33,10 @@ void main() async {
         GetPage(
           name: '/',
           page: () => const SplashScreen(),
+        ),
+        GetPage(
+          name: '/intro',
+          page: () => IntroScreen(),
         ),
         GetPage(
           name: '/login',

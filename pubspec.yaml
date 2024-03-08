@@ -45,6 +45,7 @@ dependencies:
   font_awesome_flutter:
   cherry_toast:
   video_player:
+  animate_do:
 
 dev_dependencies:
   flutter_test:
