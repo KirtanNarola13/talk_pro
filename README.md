@@ -68,15 +68,17 @@
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/1fb549f9-9141-4495-8fa0-3857477fa3bc" width="250">
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/2a1ea207-94c7-4444-8cce-7891fd4348c0" width="250">
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/f7d40704-997b-4865-a513-4bbe94e6dba1" width="250">
-<img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/b50f2765-af44-487a-8901-bd702d0e04a2" width="250">
+<img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/58019ea5-55a2-4305-88d8-aed5b8e73467" width="250">
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/86f60f12-5ca3-4d9e-8f4e-3320ff4f134d" width="250">
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/f13e76f0-9664-4708-94cb-ac2fdd77a11f" width="250">
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/2140e99a-185f-4ec8-8b4c-b7ba78c33043" width="250">
-
-
+<img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/923c942d-1cea-4c43-a879-ce41a1d32b7f" width="250">
+<img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/57e8d5b6-7162-4e13-9e91-5ca811793eb4" width="250">
+<br>
+<br>
 ---------------------------Black Theme--------------------------
-
-
+<br>
+<br>
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/66862ca6-62a8-4624-96a9-fcc9e4cd758f" width="250">
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/0c9ef5f9-8b56-4006-8d5a-64a5d546f1e5" width="250">
 <img src="https://github.com/KirtanNarola13/talk_pro/assets/133342879/0079e5a4-f969-46e1-9323-aaf5413ba1a7" width="250">
