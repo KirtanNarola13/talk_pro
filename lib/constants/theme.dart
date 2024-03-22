@@ -27,9 +27,15 @@ class ThemeConstance {
               .obs,
     },
     {
-      'name': 'Butterfly'.obs,
+      'name': 'Flower'.obs,
       'img':
           'https://i.pinimg.com/564x/27/48/1c/27481c23c1cfa881d85542791590d354.jpg'
+              .obs,
+    },
+    {
+      'name': 'Cat'.obs,
+      'img':
+          'https://i.pinimg.com/564x/84/1c/bc/841cbc9c7a076389cb2e571165323de5.jpg'
               .obs,
     },
   ];

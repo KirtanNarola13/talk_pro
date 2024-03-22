@@ -86,28 +86,62 @@ class ChatScreen extends StatelessWidget {
                     BottomSheet(
                       onClosing: () {},
                       builder: (context) => Container(
-                        padding: const EdgeInsets.only(top: 50),
                         child: Column(
-                          children: ThemeConstance.theme
-                              .map(
-                                (e) => ListTile(
-                                  title: Text("${e['name']}"),
-                                  leading: CircleAvatar(
-                                    foregroundImage:
-                                        NetworkImage("${e['img']}"),
-                                  ),
-                                  onTap: () {
-                                    controller.changeTheme(
-                                      theme: e['img']!,
-                                      name: e['name']!,
+                          children: [
+                            const Text(
+                              'Theme',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(left: 150, right: 150),
+                              child: Divider(),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                  itemCount: ThemeConstance.theme.length,
+                                  itemBuilder: (context, index) {
+                                    List<Map<String, RxString>> theme =
+                                        ThemeConstance.theme;
+                                    return Column(
+                                      children: [
+                                        ListTile(
+                                          title:
+                                              Text("${theme[index]['name']}"),
+                                          leading: CircleAvatar(
+                                            foregroundImage: NetworkImage(
+                                                "${theme[index]['img']}"),
+                                          ),
+                                          onTap: () {
+                                            controller.changeTheme(
+                                              theme: theme[index]['img']!,
+                                              name: theme[index]['name']!,
+                                            );
+                                            Get.back();
+                                          },
+                                        ),
+                                        const Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 30,
+                                            right: 30,
+                                          ),
+                                          child: Divider(),
+                                        ),
+                                      ],
                                     );
-                                    Get.back();
-                                  },
-                                ),
-                              )
-                              .toList(),
+                                  }),
+                            ),
+                          ],
                         ),
                       ),
+                      enableDrag: true,
+                      elevation: 2,
+                      onDragStart: (_) {},
+                      showDragHandle: true,
+                      dragHandleColor: (Get.isDarkMode == false)
+                          ? Colors.black
+                          : Colors.white,
                     ),
                   );
                 },
