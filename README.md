@@ -1,3 +1,5 @@
+<img src="https://github.com/user-attachments/assets/09050c05-7cc4-4870-9991-1ba07d924e6b">
+
 --> Project Definition: Chat App (Firebase Miner)
 
 --> Project Description:
