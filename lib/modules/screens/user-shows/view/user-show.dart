@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talk_pro/constants/string.dart';
 import 'package:talk_pro/modules/screens/chat-app/model/chat-model.dart';
+import 'package:talk_pro/modules/screens/gemini/view/gemini.dart';
 import 'package:talk_pro/utils/auth-helper.dart';
 import 'package:talk_pro/utils/firestore_helper.dart';
 
@@ -122,6 +122,32 @@ class UserShow extends StatelessWidget {
                         ),
                       );
                     },
+                  ),
+                ),
+                ListTile(
+                  onTap: () async {
+                    Get.to(GeminiBot());
+                  },
+                  title: Text(
+                    "Gemini Chat Bot",
+                    style: const TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                  subtitle: const Text("Sent 2h ago"),
+                  trailing: IconButton(
+                    onPressed: () {},
+                    icon: Image.asset(
+                      (Get.isDarkMode == true)
+                          ? "lib/assets/camera-white.png"
+                          : "lib/assets/camera-black.png",
+                      height: h / 30,
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    radius: 25,
+                    backgroundImage: NetworkImage(
+                        "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/IO24_WhatsInAName_Hero_1.width-1200.format-webp.webp"),
                   ),
                 ),
                 Expanded(

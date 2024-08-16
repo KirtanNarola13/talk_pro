@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:talk_pro/modules/screens/chat-app/view/chat-app.dart';
@@ -9,6 +10,7 @@ import 'package:talk_pro/modules/screens/login-screen/view/login-screen.dart';
 import 'package:talk_pro/modules/screens/one-time-intro/view/one-time-intro.dart';
 import 'package:talk_pro/modules/screens/user-shows/view/user-show.dart';
 import 'package:talk_pro/utils/color.dart';
+
 import 'firebase_options.dart';
 import 'modules/screens/sign-up-screen/views/sign-up-screen.dart';
 import 'modules/screens/splash-screen/view/spalsh-screen.dart';
@@ -18,6 +20,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  Gemini.init(apiKey: 'AIzaSyAS93QxE9LEHMevjlRZJLbu6UReK5BOC_4');
   runApp(
     GetMaterialApp(
       theme: ThemeData(

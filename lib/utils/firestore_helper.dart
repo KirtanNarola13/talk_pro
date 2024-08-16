@@ -1,7 +1,10 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebaseStorage;
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:talk_pro/utils/auth-helper.dart';
 
 import '../modules/screens/chat-app/model/chat-model.dart';
@@ -33,6 +36,13 @@ class FireStoreHelper {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getPost() {
     return firestore.collection('posts').snapshots();
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getGeminiChat() {
+    return firestore
+        .collection('gemini')
+        .orderBy('time', descending: true)
+        .snapshots();
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> fetchUser() {
@@ -143,5 +153,41 @@ class FireStoreHelper {
           .orderBy('timestamp', descending: true)
           .snapshots();
     }
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> fetchReel() {
+    return firestore.collection('reels').snapshots();
+  }
+
+  Future uploadToStorage() async {
+    try {
+      final ImagePicker picker = ImagePicker();
+
+      XFile? video = await picker.pickVideo(source: ImageSource.gallery);
+      if (video != null) {
+        log("video path ${video.path}");
+        uploadVideo(File(video.path));
+      }
+    } catch (error) {
+      log(error.toString());
+    }
+  }
+
+  uploadVideo(File video) async {
+    var uid = AuthHelper.auth.currentUser?.uid;
+    var fileName = video.path.split('/').last;
+    var storageRef =
+        firebaseStorage.FirebaseStorage.instance.ref().child('video/$fileName');
+    var uploadTask = storageRef.putFile(video);
+    await uploadTask.whenComplete(() async {
+      log("uploaded");
+
+      await firestore.collection('reels').add({
+        'url': await storageRef.getDownloadURL(),
+        'time': DateTime.now().toString(),
+      });
+      var url = await storageRef.getDownloadURL();
+      log("url $url");
+    });
   }
 }

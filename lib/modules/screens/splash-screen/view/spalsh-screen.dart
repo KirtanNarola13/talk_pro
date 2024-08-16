@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:talk_pro/modules/screens/home-screen/view/home-screen.dart';
+import 'package:talk_pro/utils/auth-helper.dart';
 import 'package:talk_pro/utils/color.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -10,7 +12,9 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 3), () {
-      Get.offAndToNamed('/intro');
+      AuthHelper.auth.currentUser == null
+          ? Get.offAndToNamed('/intro')
+          : Get.to(HomeScreen());
     });
     double h = MediaQuery.sizeOf(context).height;
     double w = MediaQuery.sizeOf(context).width;

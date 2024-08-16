@@ -39,6 +39,7 @@ dependencies:
   firebase_core:
   firebase_auth:
   cloud_firestore:
+  firebase_storage:
   flutter_login:
   google_sign_in:
   google_fonts:
@@ -47,6 +48,10 @@ dependencies:
   video_player:
   animate_do:
   flutter_launcher_icons:
+  flutter_gemini: ^2.0.5
+  image_picker:
+  shared_preferences:
+
 
 dev_dependencies:
   flutter_test:

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "910999530990-cmbtkavjen3mg8lphjr6q0qhv241uo8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.talk_pro",
+            "certificate_hash": "1645e04d3dcff88281b2a4299c8abc76d015045e"
+          }
+        },
+        {
           "client_id": "910999530990-feh3rlo85pmb1gm6ed3jiqai4vg6020s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -47,7 +55,8 @@
             }
           ]
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-7484138180142818~7524943558"
     }
   ],
   "configuration_version": "1"

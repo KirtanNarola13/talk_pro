@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talk_pro/constants/theme-controller.dart';
-import 'package:talk_pro/constants/theme.dart';
 
 class ChatDetail extends StatelessWidget {
   const ChatDetail({super.key});
@@ -66,7 +65,7 @@ class ChatDetail extends StatelessWidget {
                               size: 30,
                             ),
                           ),
-                          const Text('Profile'),
+                          const Text('Search'),
                         ],
                       ),
                       Column(
@@ -78,7 +77,7 @@ class ChatDetail extends StatelessWidget {
                               size: 30,
                             ),
                           ),
-                          const Text('Profile'),
+                          const Text('Notification'),
                         ],
                       ),
                       Column(
@@ -90,7 +89,7 @@ class ChatDetail extends StatelessWidget {
                               size: 30,
                             ),
                           ),
-                          const Text('Profile'),
+                          const Text('More'),
                         ],
                       ),
                     ],

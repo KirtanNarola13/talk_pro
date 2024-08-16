@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:talk_pro/modules/screens/reel/view/reel.dart';
 import 'package:talk_pro/utils/auth-helper.dart';
 import 'package:talk_pro/utils/firestore_helper.dart';
 
@@ -57,6 +58,18 @@ class HomeScreen extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
+                        FireStoreHelper.fireStoreHelper.uploadToStorage();
+                      },
+                      icon: const Icon(Icons.upload),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Get.to(const Reel());
+                      },
+                      icon: const Icon(Icons.video_camera_back_outlined),
+                    ),
+                    IconButton(
+                      onPressed: () {
                         Get.toNamed('/userShow');
                       },
                       icon: Image(
@@ -74,7 +87,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.only(top: 10),
             height: h / 8,
             child: StreamBuilder(
               stream: FireStoreHelper.fireStoreHelper.fetchUser(),
